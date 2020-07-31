@@ -24,7 +24,7 @@ That's all!
     ```sh
     git clone <your repository>
     ```
-1. Open VS code on your repository directory, and click Remote Development icon at the bottom left. (Or, you can open the following step from Command Parret as well)  
+1. Open VS code on your repository directory, and click Remote Development icon at the bottom left. (Or, you can open the following step from Command Palette as well)  
     ![VS Code Remote Development](docs/images/launch-vscode-remotecontainer-01.png)
 1. Select `Remote-Containers: Reopen in Containers...` on the launched menu  
     ![Reopen in containers](docs/images/vscode-remote-menu-reopenincontainer.png)
@@ -140,7 +140,7 @@ First, let's get start from the creating the [Terraform backends on Azure Storag
     ```
     Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
     ```
-1. Check if the storage accont is created.
+1. Check if the storage account is created.
     ```sh
     $ az group show --name terraform-rg --out table
     (result)
@@ -160,7 +160,7 @@ You want to customize? Check these files. These are the tricks. See also the [VS
 
 ## Personalize by dotfiles
 
-You can personalize by dotfiles mechanizm as you like it.
+You can personalize by dotfiles mechanism as you like it.
 
 [.devcontainer/devcontainer.json](.devcontainer/devcontainer.json)
 ```json
