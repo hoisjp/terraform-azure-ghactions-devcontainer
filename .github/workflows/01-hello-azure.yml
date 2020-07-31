@@ -1,0 +1,68 @@
+# This is a basic workflow to help you get started with Actions
+# see also following URLs
+# https://github.com/hashicorp/terraform-github-actions
+
+name: 01-hello-azure
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  pull_request:
+    branches:
+      - 'master'
+    paths:
+      - 01-hello-azure/*
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 01-hello-azure/*
+
+env:
+  tf_version: 'latest'
+  tf_working_dir: '01-hello-azure'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # add below 4 lines from the result of "az ad sp create-for-rbac ..."
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  # 
+  TF_VAR_storage_account_name: ${{ secrets.TF_VAR_storage_account_name }}
+  TF_VAR_storage_account_key: ${{ secrets.TF_VAR_storage_account_key }}
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: 'Checkout'
+      uses: actions/checkout@v2
+    #
+    - name: "Terraform Setup"
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ env.tf_version }}
+    #
+    - name: 'Terraform Format'
+      run: terraform fmt
+      working-directory: ${{ env.tf_working_dir }}
+    #
+    - name: 'Terraform Init'
+      run: terraform init -backend-config=backend-prod.hcl
+      working-directory: ${{ env.tf_working_dir }}
+    #
+    - name: 'Terraform Validate'
+      run: terraform validate
+      working-directory: ${{ env.tf_working_dir }}
+    #
+    - name: 'Terraform Plan'
+      run: terraform plan
+      working-directory: ${{ env.tf_working_dir }}
+    #
+    - if: github.event_name == 'push'
+      name: 'Terraform Apply'
+      run: terraform apply -auto-approve
+      working-directory: ${{ env.tf_working_dir }}
