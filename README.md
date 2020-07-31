@@ -151,6 +151,7 @@ First, let's get start from the creating the [Terraform backends on Azure Storag
 
 # Go for GitHub Actions
 
+(will be updated soon)
 
 # Customize
 You want to customize? Check these files. These are the tricks. See also the [VS Code document](https://code.visualstudio.com/docs/remote/containers) how to customize.
