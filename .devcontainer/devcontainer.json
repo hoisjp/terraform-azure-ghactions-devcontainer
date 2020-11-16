@@ -6,13 +6,15 @@
 		"dockerfile": "Dockerfile"
 	},
 	
-	// Set *default* container specific settings.json values on container create. 
+	// Set *default* container specific settings.json values on container create.
 	"settings": {
 		"terminal.integrated.shell.linux": "/bin/zsh",
 		// dotfiles
 		"dotfiles.repository": "hoisjp/terraform-azure-ghactions-examples",
 		"dotfiles.targetPath": "~/.devcontainer/dotfiles",
-		"dotfiles.installCommand": "~/.devcontainer/dotfiles/install.sh"
+		"dotfiles.installCommand": "~/.devcontainer/dotfiles/install.sh",
+		// Files
+		"files.eol": "\n",
 	},
 
 	// Add the IDs of extensions you want installed when the container is created.

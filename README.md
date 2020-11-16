@@ -31,10 +31,10 @@ That's all!
 1. Open terminal in VS Code and try...  
     ```sh
     $ terraform -v
-    Terraform v0.12.29
+    Terraform v0.13.5
     
     $ az --version
-    azure-cli                          2.9.1
+    azure-cli                          2.14.2
     ...
     ```
     Yes! You are ready to go!

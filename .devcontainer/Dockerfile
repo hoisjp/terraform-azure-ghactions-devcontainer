@@ -4,11 +4,11 @@
 FROM mcr.microsoft.com/azure-cli:latest
 
 # check terraform version: https://www.terraform.io/downloads.html
-ARG TERRAFORM_VERSION=0.12.29
+ARG TERRAFORM_VERSION=0.13.5
 # check tflint version: https://github.com/terraform-linters/tflint/releases
-ARG TFLINT_VERSION=0.18.0
+ARG TFLINT_VERSION=0.20.3
 # check terragrunt version: https://github.com/gruntwork-io/terragrunt/releases
-ARG TERRAGRUNT_VERSION=0.23.31
+ARG TERRAGRUNT_VERSION=0.26.2
 
 RUN apk update \
     && apk add --no-cache curl unzip ca-certificates zsh jq
