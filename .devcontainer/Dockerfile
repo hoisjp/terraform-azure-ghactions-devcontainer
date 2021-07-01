@@ -21,9 +21,13 @@ ARG USER_GID=$USER_UID
 
 # terraform, tflint, terragrunt
 RUN cd /usr/local/bin \
-    && curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-    && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-    && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+    && TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M ".current_version") \
+    && curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip \
+    && unzip terraform.zip \
+    && rm -f terraform.zip \
+    # && curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+    # && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+    # && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && curl -sSL https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip -o tflint_linux_amd64.zip \
     && unzip tflint_linux_amd64.zip \
     && rm tflint_linux_amd64.zip \
