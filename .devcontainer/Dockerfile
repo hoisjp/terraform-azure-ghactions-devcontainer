@@ -6,9 +6,7 @@ FROM mcr.microsoft.com/azure-cli:latest
 # check terraform version: https://www.terraform.io/downloads.html
 ARG TERRAFORM_VERSION
 # check tflint version: https://github.com/terraform-linters/tflint/releases
-ARG TFLINT_VERSION=0.20.3
 # check terragrunt version: https://github.com/gruntwork-io/terragrunt/releases
-ARG TERRAGRUNT_VERSION=0.26.2
 
 RUN apk update \
     && apk add --no-cache curl unzip ca-certificates zsh jq
@@ -25,9 +23,9 @@ RUN cd /usr/local/bin \
     && curl https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o terraform.zip \
     && unzip terraform.zip \
     && rm -f terraform.zip \
-    && curl -sSL https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_linux_amd64.zip -o tflint_linux_amd64.zip \
+    && curl -sSL https://github.com/terraform-linters/tflint/releases/latest/download/tflint_linux_amd64.zip -o tflint_linux_amd64.zip \
     && unzip tflint_linux_amd64.zip \
     && rm tflint_linux_amd64.zip \
-    && curl -sSL https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64 -o terragrunt \
+    && curl -sSL https://github.com/gruntwork-io/terragrunt/releases/latest/download/terragrunt_linux_amd64 -o terragrunt \
     && chmod u+x terragrunt
 
