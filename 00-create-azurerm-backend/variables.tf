@@ -7,5 +7,5 @@ variable "location" {
 variable "backend_storage_account_name" {
   type        = string
   description = "Storage account name for terraform backend"
-  default     = "tfstatehoisjp"
+  # default     = "tfstatehoisjp" # replace by yours
 }
